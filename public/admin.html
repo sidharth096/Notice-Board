@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color:gray;">
+    <div class="container">
+        <textarea class="text" name="" id="message" cols="30" rows="10" "></textarea>
+        <button class="btn" id="send">Update Board</button>
+    </div>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-top: 100px;
+
+        }
+        .text{
+            margin-bottom: 10px;
+        }
+        .btn{
+            background-color: black;
+            color: white
+        }
+        .btn:hover{
+            height: 30px;
+        }
+    </style>
+   
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+        var socket= io();
+        document.getElementById('send').addEventListener('click',()=>{
+            let text = document.getElementById('message').value;
+            socket.emit('message',text);
+        })
+    </script>
+</body>
+</html>
